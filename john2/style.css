@@ -1,0 +1,124 @@
+/* 基本樣式與排版設定 */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f9;
+  }
+  
+  header {
+    background-color: #2980b9;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  nav {
+    background-color: #3498db;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  nav a:hover {
+    background-color: #2980b9;
+  }
+  
+  main {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  footer {
+    background-color: #2980b9;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  
+  /* 動畫效果設定 */
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  
+  .fade-enter-from, .fade-leave-to {
+    opacity: 0;
+  }
+  
+  /* 圖片輪播動畫 */
+  .carousel-img {
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-img:hover {
+    transform: scale(1.02);
+  }
+  
+  /* 按鈕動畫效果 */
+  .button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .button:hover {
+    transform: scale(1.05);
+    background-color: #2980b9;
+  }
+  
+  /* 響應式設計 (RWD) */
+  @media (max-width: 768px) {
+    body {
+      padding: 1rem;
+    }
+    .card {
+      width: 90%;
+      margin: 0 auto;
+    }
+    nav {
+      flex-direction: column;
+      align-items: center;
+    }
+    nav a {
+      padding: 1rem;
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header h1 {
+      font-size: 1.5rem;
+    }
+    .card {
+      padding: 1rem;
+    }
+    .carousel-controls button {
+      padding: 0.5rem;
+    }
+  }

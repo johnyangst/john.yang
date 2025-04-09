@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多功能響應式網站</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>{{ siteTitle }}</h1>
+    </header>
+
+    <nav>
+      <a href="#" @click.prevent="currentPage = 'home'">首頁</a>
+      <a href="#" @click.prevent="currentPage = 'about'">關於我們</a>
+      <a href="#" @click.prevent="currentPage = 'contact'">聯絡</a>
+      <a href="#" @click.prevent="currentPage = 'products'">商品</a>
+      <a href="#" @click.prevent="currentPage = 'login'">登入</a>
+    </nav>
+
+    <main>
+      <transition name="fade" mode="out-in">
+        <section v-if="currentPage === 'home'" key="home">
+          <div class="card">
+            <h2>歡迎來到我們的網站！</h2>
+            <p>這是一個使用 Vue.js 與響應式設計打造的網站。</p>
+            <button class="button" @click="showMessage = !showMessage">
+              {{ showMessage ? '隱藏訊息' : '顯示訊息' }}
+            </button>
+            <p v-if="showMessage">這是你點擊後顯示的訊息 🚀</p>
+            <div class="carousel">
+              <img :src="carouselImages[currentImage]" alt="carousel" class="carousel-img" />
+              <div class="carousel-controls">
+                <button class="button" @click="prevImage">《</button>
+                <button class="button" @click="nextImage">》</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section v-else-if="currentPage === 'about'" key="about">
+          <div class="card">
+            <h2>關於我們</h2>
+            <p>我們是一個專注於網頁開發的團隊。</p>
+          </div>
+        </section>
+
+        <section v-else-if="currentPage === 'contact'" key="contact">
+          <div class="card">
+            <h2>聯絡我們</h2>
+            <form @submit.prevent="submitForm">
+              <label>
+                姓名：<br>
+                <input type="text" v-model="form.name" required />
+              </label><br><br>
+              <label>
+                訊息：<br>
+                <textarea v-model="form.message" required></textarea>
+              </label><br><br>
+              <button class="button" type="submit">送出</button>
+            </form>
+            <p v-if="submitted">感謝您的留言，{{ form.name }}！</p>
+          </div>
+        </section>
+
+        <section v-else-if="currentPage === 'products'" key="products">
+          <div class="card">
+            <h2>商品列表</h2>
+            <div class="product" v-for="product in products" :key="product.id">
+              <h3>{{ product.name }}</h3>
+              <p>{{ product.description }}</p>
+              <p>價格：{{ product.price }} 元</p>
+            </div>
+          </div>
+        </section>
+
+        <section v-else-if="currentPage === 'login'" key="login">
+          <div class="card">
+            <h2>會員登入</h2>
+            <form @submit.prevent="login">
+              <label>
+                帳號：<br>
+                <input type="text" v-model="loginForm.username" required />
+              </label><br><br>
+              <label>
+                密碼：<br>
+                <input type="password" v-model="loginForm.password" required />
+              </label><br><br>
+              <button class="button" type="submit">登入</button>
+            </form>
+            <p v-if="loginSuccess">歡迎回來，{{ loginForm.username }}！</p>
+          </div>
+        </section>
+      </transition>
+    </main>
+
+    <footer>
+      &copy; 2025 多功能網站. All rights reserved.
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
